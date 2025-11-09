@@ -1,5 +1,7 @@
 # Multi-Platform Matrix Build with GitHub Actions
 
+[![CI Status](https://github.com/MALIK-SAAB/sagar/actions/workflows/matrix-build.yml/badge.svg)](https://github.com/MALIK-SAAB/sagar/actions/workflows/matrix-build.yml)
+
 This repository demonstrates a **GitHub Actions matrix build workflow** that runs jobs in parallel across multiple environments and uploads build artifacts automatically.
 
 ### 🔧 Workflow Overview
@@ -14,3 +16,4 @@ Located at: `.github/workflows/matrix-build.yml`
 ### 📧 Contact
 For questions or collaboration:
 **Email:** 24f2006575@ds.study.iitm.ac.in
+
