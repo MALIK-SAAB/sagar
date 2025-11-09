@@ -1,0 +1,42 @@
+name: Multi-Platform Matrix Build (4c86731)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    # Each matrix variant runs in parallel
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [18]  # You can extend with [16, 18, 20] if needed
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # === REQUIRED IDENTIFIER ===
+      - name: matrix-4c86731
+        run: echo "Building for OS=${{ matrix.os }}, Node=${{ matrix.node-version }}"
+
+      - name: Generate build artifact
+        run: |
+          echo "Build output for OS=${{ matrix.os }}, Node=${{ matrix.node-version }}" > output.txt
+          echo "Timestamp: $(date)" >> output.txt
+          echo "System Info:" >> output.txt
+          node -v >> output.txt
+          echo "Artifact generated successfully for matrix variant." >> output.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-4c86731-${{ matrix.os }}-node${{ matrix.node-version }}
+          path: output.txt
